@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESSA Technologies: Interactive Strategic Framework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Neutral (Light gray background, dark gray text, professional blue accents) -->
+    <!-- Application Structure Plan: The SPA is structured as an interactive narrative, moving from the high-level 'Why' (The Challenge) to the 'How' (Our Pillars), and then to supporting evidence ('The ESSA Difference', 'Market Context'). The core of the app is an interactive 'Pillars' section where users can dynamically explore ESSA's three core service areas. This non-linear, exploratory structure is chosen over a direct report-to-page translation to engage users, allow them to self-direct their journey based on interest, and better communicate the interconnectedness of ESSA's offerings, which is a key theme of the source report. -->
+    <!-- Visualization & Content Choices:
+    - Report Info: RFP Analysis (Table 1) -> Goal: Inform/Compare -> Viz: Chart.js Donut Chart -> Interaction: Hover for details -> Justification: Quickly shows the market demand distribution, more engaging than a table -> Library: Chart.js.
+    - Report Info: Competitor Positioning (Table 2) -> Goal: Compare -> Viz: Chart.js Bar Chart -> Interaction: Hover for details -> Justification: Visually contrasts competitor strategies (Technical vs. Strategic) -> Library: Chart.js.
+    - Report Info: Three Pillars Framework (Section 3) -> Goal: Organize/Explore -> Viz: HTML/CSS interactive tabbed layout with dynamic text and a conceptual Chart.js chart per pillar -> Interaction: Click tabs to switch content and chart -> Justification: Allows deep-diving into ESSA's core offerings in a structured, interactive way that mirrors the report's central framework -> Library/Method: Vanilla JS, Chart.js, Tailwind CSS.
+    - Report Info: Solution Packages (Table 3) -> Goal: Organize/Inform -> Viz: Interactive HTML/CSS cards -> Interaction: Hover/click to reveal bundled services -> Justification: Makes the abstract concept of 'bundling' tangible and demonstrates cross-pillar value -> Library/Method: Vanilla JS, Tailwind CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link.active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+        .pillar-tab.active {
+            background-color: #1e40af;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .solution-card .solution-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .solution-card:hover .solution-details {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-700">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="font-bold text-xl text-slate-800">ESSA</span>
+                    <span class="font-light text-xl text-blue-600 ml-1">Framework</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#challenge" class="nav-link text-slate-600 hover:text-blue-600 px-3 py-2 text-sm font-medium border-b-2 border-transparent">The Challenge</a>
+                        <a href="#pillars" class="nav-link text-slate-600 hover:text-blue-600 px-3 py-2 text-sm font-medium border-b-2 border-transparent">Our Focus</a>
+                        <a href="#difference" class="nav-link text-slate-600 hover:text-blue-600 px-3 py-2 text-sm font-medium border-b-2 border-transparent">The ESSA Difference</a>
+                        <a href="#market" class="nav-link text-slate-600 hover:text-blue-600 px-3 py-2 text-sm font-medium border-b-2 border-transparent">Market Context</a>
+                        <a href="#activation" class="nav-link text-slate-600 hover:text-blue-600 px-3 py-2 text-sm font-medium border-b-2 border-transparent">Activation Plan</a>
+                    </div>
+                </div>
+                 <div class="md:hidden">
+                    <select id="mobile-nav" class="bg-white border border-slate-300 rounded-md py-2 px-3 text-sm">
+                        <option value="#challenge">The Challenge</option>
+                        <option value="#pillars">Our Focus</option>
+                        <option value="#difference">The ESSA Difference</option>
+                        <option value="#market">Market Context</option>
+                        <option value="#activation">Activation Plan</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        
+        <section id="hero" class="text-center py-16 md:py-24">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight">
+                <span class="block">Focusing the Lens:</span>
+                <span class="block text-blue-600 mt-2">A Strategic Framework for Impact</span>
+            </h1>
+            <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-slate-600">
+                An interactive exploration of ESSA Technologies' strategic repositioning. This application translates a comprehensive analysis into a clear, client-centric framework designed to unify messaging, focus business development, and solidify ESSA's position as a premier environmental partner.
+            </p>
+        </section>
+
+        <section id="challenge" class="py-16 md:py-24 space-y-12 scroll-mt-16">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The Challenge: A Tale of Two Truths</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-slate-600">ESSA's experts see the world as interconnected systems, yet clients buy solutions in discrete parts. This creates a core tension. The challenge is to bridge this gap—to meet clients' specific needs while showcasing the immense value of ESSA's integrated, systems-level approach.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
+                    <h3 class="text-2xl font-semibold text-slate-800">The Market's Voice</h3>
+                    <p class="mt-2 text-slate-600">Clients are clear about their immediate needs. Requests for Proposals (RFPs) show a consistent demand for specific services like regulatory support, climate risk analysis, and resource management. They procure solutions to tangible, component-level problems.</p>
+                    <div class="mt-6 chart-container">
+                        <canvas id="rfpChart"></canvas>
+                    </div>
+                     <p class="text-center text-sm text-slate-500 mt-2">Distribution of common environmental RFP themes.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
+                    <h3 class="text-2xl font-semibold text-slate-800">ESSA's Soul</h3>
+                    <p class="mt-2 text-slate-600">ESSA's DNA is systems thinking. The firm's greatest successes come from seeing the whole picture—connecting hydrology studies to community engagement, and resource models to long-term adaptive strategies. The value is in the integration.</p>
+                    <div class="mt-6 flex flex-col space-y-4">
+                        <div class="flex items-center p-4 bg-slate-100 rounded-lg">
+                             <span class="text-3xl mr-4">🔗</span>
+                            <div>
+                                <h4 class="font-semibold text-slate-800">Holistic Perspective</h4>
+                                <p class="text-sm text-slate-600">Connecting disparate parts into a coherent whole.</p>
+                            </div>
+                        </div>
+                         <div class="flex items-center p-4 bg-slate-100 rounded-lg">
+                            <span class="text-3xl mr-4">💡</span>
+                            <div>
+                                <h4 class="font-semibold text-slate-800">"Process as Product"</h4>
+                                <p class="text-sm text-slate-600">The journey to a decision is as valuable as the final report.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pillars" class="py-16 md:py-24 bg-slate-100 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 scroll-mt-16">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Our Focus: A Client-Centric Framework</h2>
+                <p class="mt-4 text-lg text-slate-600">To bridge the gap, ESSA's services are organized into three client-centric pillars. This structure moves beyond scientific disciplines to align with a client's journey—from strategic planning to scientific analysis to collaborative implementation.</p>
+            </div>
+            
+            <div class="mt-12">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-2 max-w-4xl mx-auto bg-blue-800/10 p-2 rounded-xl">
+                    <button data-pillar="planning" class="pillar-tab text-slate-700 hover:bg-blue-200 transition-all duration-300 py-3 px-4 rounded-lg font-semibold">1. Strategic Planning & Adaptive Management</button>
+                    <button data-pillar="science" class="pillar-tab text-slate-700 hover:bg-blue-200 transition-all duration-300 py-3 px-4 rounded-lg font-semibold">2. Ecosystem Science, Valuation & Analytics</button>
+                    <button data-pillar="collaboration" class="pillar-tab text-slate-700 hover:bg-blue-200 transition-all duration-300 py-3 px-4 rounded-lg font-semibold">3. Collaborative Decision-Making & Engagement</button>
+                </div>
+                
+                <div id="pillar-content" class="mt-8 max-w-6xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-200 p-6 md:p-10 transition-all duration-500 min-h-[400px]">
+                </div>
+            </div>
+        </section>
+
+        <section id="difference" class="py-16 md:py-24 scroll-mt-16">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">The ESSA Difference</h2>
+                <p class="mt-4 text-lg text-slate-600">Beyond services, ESSA's value is defined by a set of core differentiators. These are the unique, defensible capabilities that form the foundation of a powerful and authentic value proposition.</p>
+            </div>
+            <div class="mt-12 grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200 text-center">
+                    <div class="text-5xl text-blue-600">🤝</div>
+                    <h3 class="mt-4 text-xl font-semibold text-slate-800">Navigating Complexity & Contention</h3>
+                    <p class="mt-2 text-slate-600">ESSA thrives in high-stakes situations where science and society intersect, successfully managing high-conflict, multi-party processes where others have failed.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200 text-center">
+                    <div class="text-5xl text-blue-600">🛡️</div>
+                    <h3 class="mt-4 text-xl font-semibold text-slate-800">Defensible Science for High-Stakes Decisions</h3>
+                    <p class="mt-2 text-slate-600">In a world of scrutiny, ESSA provides robust, predictive science that withstands regulatory and public challenge, building trust among all parties.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200 text-center">
+                     <div class="text-5xl text-blue-600">🌱</div>
+                    <h3 class="mt-4 text-xl font-semibold text-slate-800">Enduring Trust with Indigenous Nations</h3>
+                    <p class="mt-2 text-slate-600">A proven ability to build deep, long-term, respectful partnerships with Indigenous communities—a primary business driver and a significant competitive moat.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="market" class="py-16 md:py-24 bg-slate-100 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 scroll-mt-16">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Market Context</h2>
+                <p class="mt-4 text-lg text-slate-600">The environmental consulting landscape is a spectrum from technical execution to strategic advice. ESSA's opportunity is to bridge this gap, connecting its formidable technical services to the strategic outcomes clients value most.</p>
+            </div>
+            <div class="mt-12 bg-white p-8 rounded-xl shadow-lg border border-slate-200">
+                <h3 class="text-2xl font-semibold text-slate-800 text-center">The Competitive Arena</h3>
+                <p class="mt-2 text-slate-600 text-center max-w-2xl mx-auto">Firms compete by selling *what* they do (technical menus) or *why* it matters (strategic outcomes). ESSA's path is to use its 'what' to deliver and communicate the 'why'.</p>
+                <div class="mt-6 chart-container max-w-4xl">
+                     <canvas id="competitorChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-slate-500 mt-2">Positioning of major competitors.</p>
+            </div>
+        </section>
+
+        <section id="activation" class="py-16 md:py-24 scroll-mt-16">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Activating the Framework</h2>
+                <p class="mt-4 text-lg text-slate-600">A strategy is only as valuable as its implementation. The key is bundling services into tangible "Solution Packages" that solve recurring, high-value client problems and demonstrate ESSA's integrated power.</p>
+            </div>
+            <div class="mt-12 grid lg:grid-cols-3 gap-8">
+                <div class="solution-card bg-white p-6 rounded-xl shadow-lg border border-slate-200 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-blue-700">Climate-Resilient Infrastructure Plan</h3>
+                    <p class="mt-2 text-slate-600 font-semibold">The Problem:</p>
+                    <p class="text-slate-600">A municipality needs to update its master plan to account for future climate risks and secure federal funding.</p>
+                    <div class="solution-details mt-4">
+                        <h4 class="font-semibold text-slate-800">Bundled Services:</h4>
+                        <ul class="mt-2 space-y-1 text-sm list-disc list-inside text-slate-600">
+                            <li><span class="font-semibold text-blue-600">[Pillar 1]</span> Climate Vulnerability Assessment</li>
+                            <li><span class="font-semibold text-blue-600">[Pillar 1]</span> Regulatory Strategy</li>
+                            <li><span class="font-semibold text-green-600">[Pillar 2]</span> Hydrological Modeling</li>
+                            <li><span class="font-semibold text-green-600">[Pillar 2]</span> Natural Asset Inventory</li>
+                             <li><span class="font-semibold text-purple-600">[Pillar 3]</span> Adaptive Management Framework</li>
+                        </ul>
+                    </div>
+                     <p class="text-center text-sm font-medium text-blue-500 mt-4 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity">Hover to see details</p>
+                </div>
+                <div class="solution-card bg-white p-6 rounded-xl shadow-lg border border-slate-200 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-green-700">Defensible Mine Operations Plan</h3>
+                    <p class="mt-2 text-slate-600 font-semibold">The Problem:</p>
+                    <p class="text-slate-600">A mining company needs to secure permits and maintain social license for a new operation in a sensitive watershed.</p>
+                     <div class="solution-details mt-4">
+                        <h4 class="font-semibold text-slate-800">Bundled Services:</h4>
+                        <ul class="mt-2 space-y-1 text-sm list-disc list-inside text-slate-600">
+                             <li><span class="font-semibold text-blue-600">[Pillar 1]</span> ESIA & Permitting Support</li>
+                             <li><span class="font-semibold text-green-600">[Pillar 2]</span> Water Quality & Fish Population Modeling</li>
+                             <li><span class="font-semibold text-green-600">[Pillar 2]</span> Monitoring Design</li>
+                             <li><span class="font-semibold text-purple-600">[Pillar 3]</span> Collaborative Decision Process with Partners</li>
+                        </ul>
+                    </div>
+                    <p class="text-center text-sm font-medium text-green-500 mt-4 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity">Hover to see details</p>
+                </div>
+                <div class="solution-card bg-white p-6 rounded-xl shadow-lg border border-slate-200 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-purple-700">Shared Water Resource Governance</h3>
+                    <p class="mt-2 text-slate-600 font-semibold">The Problem:</p>
+                    <p class="text-slate-600">Multiple jurisdictions with competing interests need a shared governance plan for a transboundary river.</p>
+                     <div class="solution-details mt-4">
+                        <h4 class="font-semibold text-slate-800">Bundled Services:</h4>
+                        <ul class="mt-2 space-y-1 text-sm list-disc list-inside text-slate-600">
+                           <li><span class="font-semibold text-blue-600">[Pillar 1]</span> Transboundary Risk Assessment</li>
+                           <li><span class="font-semibold text-green-600">[Pillar 2]</span> Integrated Ecosystem Modeling</li>
+                           <li><span class="font-semibold text-purple-600">[Pillar 3]</span> Multi-Stakeholder Facilitation</li>
+                           <li><span class="font-semibold text-purple-600">[Pillar 3]</span> Adaptive Management Plan Design</li>
+                        </ul>
+                    </div>
+                     <p class="text-center text-sm font-medium text-purple-500 mt-4 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity">Hover to see details</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm">
+            <p>&copy; 2024 ESSA Technologies Ltd. Interactive Strategic Framework.</p>
+            <p class="mt-1">This is a conceptual application based on the "Focusing the Lens" report.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const appData = {
+                pillars: {
+                    planning: {
+                        title: 'Strategic Planning & Adaptive Management',
+                        color: 'blue',
+                        problem: "We face a complex environmental challenge—a new project, a changing climate, a new regulation. We need to understand the risks, navigate the regulatory maze, and develop a credible, science-based, and adaptable plan to move forward.",
+                        solution: "ESSA provides the strategic environmental intelligence and planning expertise required to make informed, high-stakes decisions. We act as a trusted advisor, helping clients anticipate challenges, comply with regulations, and design projects and policies that are both effective and resilient. Our structured 'learning by doing' methodology ensures management actions are flexible, data-driven, and continuously refined.",
+                        services: [
+                            'Cumulative Effects Assessment (CEA)',
+                            'Environmental & Social Impact Assessment (ESIA)',
+                            'Climate Change Vulnerability & Adaptation Planning',
+                            'Natural Resource Management Planning',
+                            'Regulatory Strategy & Permitting Support',
+                            'Sustainability & ESG Strategy',
+                            'Strategic foresight and science and innovation strategy'
+                        ],
+                        examples: [
+                            'Minimizing environmental impacts from coal mining operations.',
+                            'Recovery efforts for endangered species (e.g., Pallid Sturgeon).',
+                            'Environmental effects monitoring for large industrial facilities.'
+                        ]
+                    },
+                    science: {
+                        title: 'Ecosystem Science, Valuation & Analytics',
+                        color: 'green',
+                        problem: "We need to understand how our operations are impacting an ecosystem, or how it's changing due to external pressures. We need robust data, predictive models, and ongoing monitoring to manage our resources effectively and understand the true value of natural assets.",
+                        solution: "ESSA delivers cutting-edge ecosystem science and analytics. We employ advanced modeling, monitoring, and data analysis to provide a clear, quantitative understanding of environmental systems. We make the 'invisible' economic value of nature's services visible in decision-making and promote nature-based solutions that yield multiple co-benefits.",
+                        services: [
+                            'Fisheries & Aquatic Sciences',
+                            'Nature-Based Solutions Design & Valuation',
+                            'Ecological & Biophysical Modeling',
+                            'Monitoring Design & Evaluation',
+                            'Data Analysis & Decision-Support Tool Development',
+                            'Forest carbon modeling',
+                            'Developing natural asset inventories',
+                            'Developing methodologies for emerging markets'
+                        ],
+                        examples: [
+                            'Quantifying impacts on fish populations and habitats.',
+                            'Forest carbon modeling to quantify and assess carbon sequestration value.',
+                            'Economic valuation of old-growth forests in British Columbia.',
+                            'Developing natural asset inventories for municipalities.'
+                        ]
+                    },
+                    collaboration: {
+                        title: 'Collaborative Decision-Making & Engagement',
+                        color: 'purple',
+                        problem: "We face a contentious issue with multiple stakeholders who have conflicting values. We need a trusted, objective third party to guide us through a structured process to build consensus, make a defensible decision, and ensure successful, adaptive implementation.",
+                        solution: "ESSA designs and leads collaborative processes that integrate science, stakeholder values, and structured decision-making. We act as a neutral 'technical facilitator,' creating productive dialogue and enabling groups to move from conflict to consensus and from planning to action. We translate complex data into accessible frameworks to build trust and achieve collaborative solutions.",
+                        services: [
+                            'Adaptive Management Program Design & Implementation',
+                            'Multi-Stakeholder Facilitation & Engagement',
+                            'Public & Indigenous Community Consultation',
+                            'Science Communication for Diverse Audiences',
+                            'Conflict Resolution & Collaborative Planning',
+                            'Structured Decision-Making Process Design'
+                        ],
+                        examples: [
+                            'Decision support for the Pacific Salmon Commission.',
+                            'Facilitating multi-party planning for flood mitigation.',
+                            'Managing engagement for watershed planning among conflicting interests.',
+                            'Building trust and collaborating with Indigenous communities.'
+                        ]
+                    }
+                }
+            };
+            
+            const pillarContentEl = document.getElementById('pillar-content');
+            const pillarTabs = document.querySelectorAll('.pillar-tab');
+
+            function renderPillarContent(pillarId) {
+                const pillar = appData.pillars[pillarId];
+                if (!pillar) return;
+
+                pillarContentEl.innerHTML = `
+                    <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
+                        <div>
+                            <h3 class="text-2xl md:text-3xl font-bold text-${pillar.color}-700">${pillar.title}</h3>
+                            <div class="mt-6">
+                                <h4 class="font-semibold text-slate-800">The Client Problem:</h4>
+                                <p class="mt-1 text-slate-600 italic">"${pillar.problem}"</p>
+                            </div>
+                            <div class="mt-6">
+                                <h4 class="font-semibold text-slate-800">ESSA's Solution:</h4>
+                                <p class="mt-1 text-slate-600">${pillar.solution}</p>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-slate-800">Core Services:</h4>
+                                <ul class="mt-2 grid sm:grid-cols-2 gap-x-4 gap-y-1 text-sm text-slate-600">
+                                    ${pillar.services.map(service => `<li class="flex items-start"><span class="text-${pillar.color}-500 mr-2 mt-1">◆</span><span>${service}</span></li>`).join('')}
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-slate-800">Examples in Action:</h4>
+                                <ul class="mt-2 space-y-1 text-sm list-disc list-inside text-slate-600">
+                                    ${pillar.examples.map(example => `<li>${example}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                pillarTabs.forEach(t => t.classList.remove('active'));
+                document.querySelector(`.pillar-tab[data-pillar="${pillarId}"]`).classList.add('active');
+            }
+
+            pillarTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    renderPillarContent(tab.dataset.pillar);
+                });
+            });
+
+            renderPillarContent('planning');
+
+            const rfpCtx = document.getElementById('rfpChart').getContext('2d');
+            new Chart(rfpCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Regulatory & Impact', 'Climate Adaptation', 'Resource Management', 'Stakeholder Engagement', 'Cumulative Effects'],
+                    datasets: [{
+                        label: 'RFP Themes',
+                        data: [25, 20, 20, 15, 20],
+                        backgroundColor: [
+                            '#3b82f6',
+                            '#10b981',
+                            '#f97316',
+                            '#8b5cf6',
+                            '#ef4444'
+                        ],
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { size: 10 }
+                            }
+                        },
+                        tooltip: {
+                             callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const competitorCtx = document.getElementById('competitorChart').getContext('2d');
+            new Chart(competitorCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Stantec', 'WSP (Golder)', 'Deloitte', 'ERM'],
+                    datasets: [{
+                        label: 'Focus on Technical Execution',
+                        data: [8, 7, 3, 6],
+                        backgroundColor: '#60a5fa',
+                    }, {
+                        label: 'Focus on Strategic Advice',
+                        data: [4, 5, 9, 8],
+                        backgroundColor: '#2563eb',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                     indexAxis: 'y',
+                    scales: {
+                        x: {
+                            stacked: true,
+                            title: { display: true, text: 'Positioning Score (Conceptual)'}
+                        },
+                        y: {
+                            stacked: true
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                         tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    }
+                }
+            });
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section[id]');
+            const mobileNav = document.getElementById('mobile-nav');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                        });
+                        mobileNav.value = `#${entry.target.id}`;
+                    }
+                });
+            }, { rootMargin: '-50% 0px -50% 0px' });
+
+            sections.forEach(section => observer.observe(section));
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelector(link.getAttribute('href')).scrollIntoView();
+                });
+            });
+
+            mobileNav.addEventListener('change', (e) => {
+                 document.querySelector(e.target.value).scrollIntoView();
+            });
+
+        });
+    </script>
+</body>
+</html>
