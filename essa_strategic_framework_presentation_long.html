@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESSA: Focusing the Lens - Strategic Presentation (Extended)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .slide {
+            display: none;
+            min-height: 100vh;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: auto;
+            padding: 2rem 4rem;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .controls button:hover {
+            transform: scale(1.1);
+        }
+        .logo-text {
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 2px;
+        }
+        .table-cell {
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 overflow-hidden">
+
+    <main id="presentation-container">
+
+        <!-- Slide 1: Title -->
+        <section class="slide active bg-slate-900 text-white flex-col justify-center items-center text-center p-8">
+            <div class="slide-content fade-in">
+                <span class="block text-lg font-semibold text-blue-400">ESSA Technologies Ltd.</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold mt-4 tracking-tight">Focusing the Lens</h1>
+                <p class="mt-6 text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto">A Strategic Framework for Positioning, Messaging, and Impact</p>
+            </div>
+        </section>
+        
+        <!-- Slide 2: The Agenda -->
+        <section class="slide flex-col justify-center items-center bg-white p-8">
+            <div class="slide-content fade-in text-left">
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-center">Our Journey Today</h2>
+                <div class="mt-12 grid md:grid-cols-2 gap-x-16 gap-y-8 text-xl">
+                    <p><strong>1. Internal Synthesis:</strong> Understanding the DNA of ESSA</p>
+                    <p><strong>2. Market Mandate:</strong> Analyzing Client Needs & Competitors</p>
+                    <p><strong>3. Strategic Positioning:</strong> Defining ESSA's Unique Space</p>
+                    <p><strong>4. The Framework:</strong> Introducing the Three Pillars</p>
+                    <p><strong>5. Activation Plan:</strong> From Strategy to Action</p>
+                    <p><strong>6. The Path Forward:</strong> Discussion & Next Steps</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: The DNA of Excellence -->
+        <section class="slide flex-col justify-center items-center bg-slate-100 p-8">
+            <div class="slide-content fade-in text-center">
+                 <span class="block text-lg font-semibold text-blue-600">Part 1: Internal Synthesis</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold mt-2 tracking-tight">The DNA of Excellence</h2>
+                <p class="mt-4 text-xl text-slate-600 max-w-4xl mx-auto">Our analysis began by looking inward, synthesizing hours of interviews to identify the core strengths that define ESSA's identity.</p>
+                <div class="mt-12 grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="text-4xl">🔬</div>
+                        <h3 class="mt-3 font-bold text-xl">Unimpeachable Scientific Credibility</h3>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="text-4xl">🎯</div>
+                        <h3 class="mt-3 font-bold text-xl">"SWAT Team" for "Wicked Problems"</h3>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="text-4xl">🤝</div>
+                        <h3 class="mt-3 font-bold text-xl">Trust as a Business Model</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Slide 4: Growth Constraints -->
+        <section class="slide flex-col justify-center items-center bg-white p-8">
+            <div class="slide-content fade-in text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold mt-2 tracking-tight">The Paradox of Specialization</h2>
+                <p class="mt-4 text-xl text-slate-600 max-w-4xl mx-auto">The same culture that fosters excellence also creates structural constraints that inhibit growth. Recognizing these is the first step to overcoming them.</p>
+                <div class="mt-10 grid md:grid-cols-3 gap-8 text-left">
+                    <div class="border-l-4 border-red-500 pl-6">
+                        <h3 class="text-2xl font-bold">The "Humble Expert"</h3>
+                        <p class="mt-2 text-slate-600">A scientific culture that is inherently at odds with self-promotion, creating a gap between impact and market presence.</p>
+                    </div>
+                    <div class="border-l-4 border-yellow-500 pl-6">
+                        <h3 class="text-2xl font-bold">The "Wrong Size"</h3>
+                        <p class="mt-2 text-slate-600">Too large to be a nimble boutique, too small for dedicated, non-billable strategic resources like marketing.</p>
+                    </div>
+                    <div class="border-l-4 border-blue-500 pl-6">
+                        <h3 class="text-2xl font-bold">"Five Boats, Five Directions"</h3>
+                        <p class="mt-2 text-slate-600">Deep specialization leads to a lack of a unified, market-facing narrative, making it hard for clients to see the full, integrated value.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: The Challenge -->
+        <section class="slide flex-col justify-center items-center bg-slate-100 p-8">
+            <div class="slide-content fade-in grid md:grid-cols-2 gap-16 items-center">
+                <div class="text-left">
+                    <span class="block text-lg font-semibold text-blue-600">The Core Tension</span>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mt-2 tracking-tight">Bridging Two Worlds</h2>
+                    <p class="mt-6 text-xl text-slate-600">ESSA's soul is **systems thinking**, but clients procure **component solutions**. Our challenge is to meet specific market needs while showcasing the immense value of our integrated, holistic approach.</p>
+                </div>
+                <div>
+                    <img src="https://placehold.co/600x400/e2e8f0/475569?text=Complex+System+vs.+Simple+Parts" alt="Diagram showing a complex web connecting to simple, separate blocks" class="rounded-lg shadow-xl w-full">
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Market Mandate - RFPs -->
+        <section class="slide flex-col justify-center items-center bg-white p-8">
+            <div class="slide-content fade-in text-center">
+                <span class="block text-lg font-semibold text-blue-600">Part 2: The Market Mandate</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold mt-2 tracking-tight">What Clients Are Asking For</h2>
+                <p class="mt-4 text-xl text-slate-600 max-w-4xl mx-auto">Our analysis of recent RFPs reveals clear, consistent demand themes.</p>
+                <div class="mt-8 text-left text-sm bg-white border border-slate-200 rounded-lg shadow-md overflow-hidden">
+                    <div class="w-full">
+                        <div class="grid grid-cols-4 font-bold bg-slate-100">
+                            <div class="table-cell">Client Need / Theme</div>
+                            <div class="table-cell">Representative RFP</div>
+                            <div class="table-cell">Key Services Requested</div>
+                            <div class="table-cell">Implicit Client Goal</div>
+                        </div>
+                        <div class="grid grid-cols-4">
+                            <div class="table-cell font-semibold">Climate Adaptation & Resilience</div>
+                            <div class="table-cell">Consulting for Climate Plan</div>
+                            <div class="table-cell">Vulnerability assessment, adaptation strategies, risk analysis</div>
+                            <div class="table-cell">Secure funding, manage long-term risk</div>
+                        </div>
+                        <div class="grid grid-cols-4 bg-slate-50">
+                            <div class="table-cell font-semibold">Regulatory & Impact Assessment</div>
+                            <div class="table-cell">Environmental Impact Statement (EIS)</div>
+                            <div class="table-cell">EA/EIS prep, public scoping</div>
+                            <div class="table-cell">Meet mandate, secure permits</div>
+                        </div>
+                        <div class="grid grid-cols-4">
+                            <div class="table-cell font-semibold">Natural Resource Management</div>
+                            <div class="table-cell">Ecosystem & Habitat Indicators</div>
+                            <div class="table-cell">Indicator development, scientific review</div>
+                            <div class="table-cell">Sustainable use, resolve conflicts</div>
+                        </div>
+                         <div class="grid grid-cols-4 bg-slate-50">
+                            <div class="table-cell font-semibold">Cumulative Effects Assessment</div>
+                            <div class="table-cell">Cumulative Impact Assessment</div>
+                            <div class="table-cell">Data analysis, indicator development</div>
+                            <div class="table-cell">Address enviro-justice, inform policy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Slide 7: The Competitive Arena -->
+        <section class="slide flex-col justify-center items-center bg-slate-100 p-8">
+            <div class="slide-content fade-in text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold mt-2 tracking-tight">The Competitive Arena</h2>
+                <p class="mt-4 text-xl text-slate-600 max-w-4xl mx-auto">Firms compete on a spectrum from technical execution to strategic advice. ESSA's opportunity is to bridge this gap.</p>
+                <div class="mt-8 text-left text-sm bg-white border border-slate-200 rounded-lg shadow-md overflow-hidden">
+                     <div class="w-full">
+                        <div class="grid grid-cols-5 font-bold bg-slate-100">
+                            <div class="table-cell">Firm</div>
+                            <div class="table-cell">Core Message</div>
+                            <div class="table-cell">Audience</div>
+                            <div class="table-cell">Value Proposition</div>
+                            <div class="table-cell text-blue-600">ESSA's Differentiator</div>
+                        </div>
+                        <div class="grid grid-cols-5">
+                            <div class="table-cell font-semibold">Deloitte</div>
+                            <div class="table-cell">"Sustainable solutions."</div>
+                            <div class="table-cell">C-Suite, CFOs</div>
+                            <div class="table-cell">Manage risk, create financial value</div>
+                            <div class="table-cell text-blue-600" rowspan="3">We provide the ground-truth science to ensure strategy is viable, defensible, and trusted.</div>
+                        </div>
+                        <div class="grid grid-cols-5 bg-slate-50">
+                            <div class="table-cell font-semibold">Stantec</div>
+                            <div class="table-cell">"Innovate at the intersection..."</div>
+                            <div class="table-cell">Project Developers</div>
+                            <div class="table-cell">Full-service engineering partner</div>
+                        </div>
+                        <div class="grid grid-cols-5">
+                            <div class="table-cell font-semibold">ERM</div>
+                            <div class="table-cell">"The business of sustainability."</div>
+                            <div class="table-cell">Corporate EHS</div>
+                            <div class="table-cell">Ensure compliance, manage risk</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: The White Space -->
+        <section class="slide flex-col justify-center items-center bg-white p-8">
+            <div class="slide-content fade-in text-center">
+                 <span class="block text-lg font-semibold text-blue-600">Part 3: Strategic Positioning</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold mt-2 tracking-tight">Defining ESSA's White Space</h2>
+                <p class="mt-4 text-xl text-slate-600 max-w-4xl mx-auto">The market has a clear gap between high-level strategy and granular technical execution. This is the space ESSA is uniquely positioned to own.</p>
+                 <div class="mt-10 flex justify-center items-center">
+                    <img src="https://placehold.co/1000x400/ffffff/1e293b?text=High-Level+Strategy+(The+Why)+%0A%0A%0A%0AESSA:+The+Strategic+Science+Partner%0A(The+Bridge)%0A%0A%0A%0AGranular+Execution+(The+How)" alt="A diagram showing the gap between strategy and execution, with ESSA as the bridge" class="rounded-lg w-full border-2 border-slate-200">
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Umbrella Message -->
+        <section class="slide flex-col justify-center items-center bg-blue-900 text-white p-8">
+            <div class="slide-content fade-in text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">The Umbrella Message</h2>
+                <p class="mt-4 text-xl text-blue-200 max-w-4xl mx-auto">To unify the "five boats," we need a single, powerful message that encapsulates ESSA's core value proposition.</p>
+                <div class="mt-10 bg-white/10 p-10 rounded-xl">
+                    <h3 class="text-5xl font-extrabold tracking-tight">"Valuing Nature, Validated by Science."</h3>
+                    <div class="mt-8 grid md:grid-cols-2 gap-8 text-left text-lg">
+                        <p><strong class="text-blue-300">"Valuing Nature"</strong> speaks to the 'why'—the mission to make the invisible value of nature visible on the balance sheet and in decisions.</p>
+                        <p><strong class="text-blue-300">"Validated by Science"</strong> speaks to the 'how'—the 45-year legacy of rigor, data, and defensible conclusions that builds confidence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Client Focus -->
+        <section class="slide flex-col justify-center items-center bg-white p-8">
+             <div class="slide-content fade-in text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold mt-2 tracking-tight">Focusing on the Upstream Decision-Maker</h2>
+                <p class="mt-4 text-xl text-slate-600 max-w-4xl mx-auto">A core strategic shift is to engage senior leaders *before* the project scope is finalized, moving from a reactive vendor to a proactive advisor.</p>
+                <div class="mt-12 grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 bg-slate-100 rounded-lg">
+                        <div class="text-4xl">🏢</div>
+                        <h3 class="mt-3 text-2xl font-bold">The Private Sector VP</h3>
+                        <p class="mt-2 text-slate-600"><strong>Concern:</strong> Financial risk, stranded assets. <br> <strong>Message:</strong> We de-risk major capital investments.</p>
+                    </div>
+                    <div class="text-center p-6 bg-slate-100 rounded-lg">
+                        <div class="text-4xl">🏛️</div>
+                        <h3 class="mt-3 text-2xl font-bold">The Public Sector Director</h3>
+                        <p class="mt-2 text-slate-600"><strong>Concern:</strong> Building consensus, defensible decisions. <br> <strong>Message:</strong> We provide scientifically sound justification.</p>
+                    </div>
+                     <div class="text-center p-6 bg-slate-100 rounded-lg">
+                        <div class="text-4xl">🏞️</div>
+                        <h3 class="mt-3 text-2xl font-bold">The Indigenous Leader</h3>
+                        <p class="mt-2 text-slate-600"><strong>Concern:</strong> Stewardship, protecting rights. <br> <strong>Message:</strong> We co-create solutions through respectful partnership.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Slide 11: The Framework -->
+        <section class="slide flex-col justify-center items-center bg-blue-800 text-white p-8">
+            <div class="slide-content fade-in text-center">
+                <span class="block text-lg font-semibold text-blue-300">Part 4: The Framework</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Our Client-Centric Service Framework</h2>
+                <p class="mt-6 text-xl text-blue-200 max-w-4xl mx-auto">To unify our message and align with the client's journey, we organize our services into three clear, outcome-focused pillars.</p>
+            </div>
+        </section>
+
+        <!-- Slide 12: Pillar 1 -->
+        <section class="slide flex-col justify-center items-center bg-white p-8">
+            <div class="slide-content fade-in grid md:grid-cols-2 gap-16 items-center">
+                <div class="text-left">
+                    <span class="block text-lg font-semibold text-blue-600">Pillar 1</span>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mt-2 tracking-tight">Strategic Planning & Adaptive Management</h2>
+                    <p class="mt-4 text-xl text-slate-600"><strong>Client Problem:</strong> "We need to understand risks, navigate regulations, and develop a credible, adaptable plan."</p>
+                    <p class="mt-4 text-xl text-slate-600"><strong>ESSA's Solution:</strong> We provide the strategic environmental intelligence and planning expertise to make informed, high-stakes decisions, utilizing a "learning by doing" methodology.</p>
+                </div>
+                <div>
+                    <img src="https://placehold.co/600x450/dbeafe/1e40af?text=Strategic+Roadmap" alt="Image of a compass and a map" class="rounded-lg shadow-xl w-full">
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 13: Pillar 2 -->
+        <section class="slide flex-col justify-center items-center bg-white p-8">
+            <div class="slide-content fade-in grid md:grid-cols-2 gap-16 items-center">
+                 <div>
+                    <img src="https://placehold.co/600x450/d1fae5/065f46?text=Quantitative+Ecosystem+Model" alt="Image of data visualizations and ecosystem models" class="rounded-lg shadow-xl w-full">
+                </div>
+                <div class="text-left">
+                    <span class="block text-lg font-semibold text-green-600">Pillar 2</span>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mt-2 tracking-tight">Ecosystem Science, Valuation & Analytics</h2>
+                    <p class="mt-4 text-xl text-slate-600"><strong>Client Problem:</strong> "We need robust data, predictive models, and ongoing monitoring to manage our resources and understand the value of natural assets."</p>
+                    <p class="mt-4 text-xl text-slate-600"><strong>ESSA's Solution:</strong> We deliver cutting-edge ecosystem science and analytics, making the "invisible" economic value of nature visible in decision-making.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 14: Pillar 3 -->
+        <section class="slide flex-col justify-center items-center bg-white p-8">
+            <div class="slide-content fade-in grid md:grid-cols-2 gap-16 items-center">
+                <div class="text-left">
+                    <span class="block text-lg font-semibold text-purple-600">Pillar 3</span>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mt-2 tracking-tight">Collaborative Decision-Making & Engagement</h2>
+                    <p class="mt-4 text-xl text-slate-600"><strong>Client Problem:</strong> "We face a contentious issue with conflicting stakeholders. We need a trusted, objective third party to guide us to consensus."</p>
+                    <p class="mt-4 text-xl text-slate-600"><strong>ESSA's Solution:</strong> We design and lead collaborative processes that integrate science and stakeholder values, acting as a neutral "technical facilitator" to move groups from conflict to action.</p>
+                </div>
+                <div>
+                     <img src="https://placehold.co/600x450/e9d5ff/581c87?text=Building+Consensus" alt="Image of diverse people collaborating around a table" class="rounded-lg shadow-xl w-full">
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 15: Activating the Framework -->
+        <section class="slide flex-col justify-center items-center bg-slate-100 p-8">
+            <div class="slide-content fade-in text-center">
+                 <span class="block text-lg font-semibold text-blue-600">Part 5: Activation</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold mt-2 tracking-tight">From Services to Solutions</h2>
+                <p class="mt-4 text-xl text-slate-600 max-w-4xl mx-auto">We make our integrated power tangible by bundling services from across the pillars into high-value **"Solution Packages"** that solve recurring client problems.</p>
+                <div class="mt-12 grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-blue-700">Climate-Resilient Infrastructure Plan</h3>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-green-700">Defensible Mine Operations Plan</h3>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-purple-700">Shared Water Resource Governance</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Slide 16: Case Study 1 -->
+        <section class="slide flex-col justify-center items-center bg-white p-8">
+            <div class="slide-content fade-in grid md:grid-cols-2 gap-16 items-center">
+                <div class="text-left">
+                    <span class="block text-lg font-semibold text-blue-600">Case Study</span>
+                    <h2 class="text-4xl font-extrabold mt-2 tracking-tight">Navigating Complexity on the Missouri River</h2>
+                    <p class="mt-4 text-xl text-slate-600">Faced with conflict between industry, conservation, and multiple jurisdictions, our adaptive management framework created a transparent, evidence-based process for recovering the endangered pallid sturgeon, building trust among historic adversaries.</p>
+                </div>
+                <div>
+                    <img src="https://placehold.co/600x450/bae6fd/0c4a6e?text=Missouri+River+System" alt="Map of the Missouri River" class="rounded-lg shadow-xl w-full">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Slide 17: Case Study 2 -->
+        <section class="slide flex-col justify-center items-center bg-white p-8">
+            <div class="slide-content fade-in grid md:grid-cols-2 gap-16 items-center">
+                 <div>
+                    <img src="https://placehold.co/600x450/a7f3d0/047857?text=Kitimat+Valley+Monitoring" alt="Industrial site in a valley with monitoring icons" class="rounded-lg shadow-xl w-full">
+                </div>
+                <div class="text-left">
+                    <span class="block text-lg font-semibold text-green-600">Case Study</span>
+                    <h2 class="text-4xl font-extrabold mt-2 tracking-tight">Building Trust in the Kitimat Valley</h2>
+                    <p class="mt-4 text-xl text-slate-600">Our rigorous, transparent monitoring of a Rio Tinto smelter built such deep trust that First Nations advocated for us to lead the cumulative effects management for a new LNG facility, proving that demonstrable scientific integrity is a form of currency.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 18: Web & Marketing -->
+        <section class="slide flex-col justify-center items-center bg-slate-100 p-8">
+            <div class="slide-content fade-in text-center">
+                <span class="block text-lg font-semibold text-blue-600">Go-to-Market</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold mt-2 tracking-tight">A Blueprint for Engagement</h2>
+                 <div class="mt-12 grid md:grid-cols-2 gap-12 text-left">
+                    <div>
+                        <h3 class="text-3xl font-bold">Revamp Digital Presence</h3>
+                        <ul class="mt-4 space-y-3 text-lg text-slate-600 list-disc list-inside">
+                           <li>Restructure site around the three pillars.</li>
+                           <li>Rewrite projects as "Challenge-Solution-Impact" case studies.</li>
+                           <li>Implement robust lead capture on all content.</li>
+                           <li>Create a dedicated "Working with Indigenous Nations" page.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-bold">Proactive Content Strategy</h3>
+                        <ul class="mt-4 space-y-3 text-lg text-slate-600 list-disc list-inside">
+                            <li>Develop pillar-based thought leadership (white papers, webinars).</li>
+                            <li>Use targeted dissemination to reach ideal clients.</li>
+                            <li>Systematize client feedback to generate testimonials.</li>
+                            <li>Shift from reactive proposal writing to proactive demand creation.</li>
+                        </ul>
+                    </div>
+                 </div>
+            </div>
+        </section>
+        
+        <!-- Slide 19: Pilot Campaign -->
+        <section class="slide flex-col justify-center items-center bg-white p-8">
+            <div class="slide-content fade-in text-left">
+                 <h2 class="text-4xl md:text-5xl font-extrabold mt-2 tracking-tight">Pilot Campaign: A Concrete First Step</h2>
+                 <p class="mt-4 text-xl text-slate-600 max-w-4xl">To demonstrate the power of this approach, we propose a pilot campaign to provide measurable results and build internal confidence in proactive marketing.</p>
+                 <div class="mt-8 bg-slate-100 p-8 rounded-lg shadow-md">
+                    <p class="text-lg"><strong class="text-blue-600">Objective:</strong> Generate 3-5 qualified leads from the Canadian mining sector in 3 months.</p>
+                    <p class="mt-4 text-lg"><strong class="text-blue-600">Content Asset:</strong> White paper on *"How Strategic Environmental Science Reduces Long-Term Risk in Mining Operations."*</p>
+                    <p class="mt-4 text-lg"><strong class="text-blue-600">Execution:</strong> Targeted LinkedIn ad campaign driving to a landing page with lead capture, followed by an automated email nurture sequence.</p>
+                 </div>
+            </div>
+        </section>
+
+
+        <!-- Slide 20: Conclusion -->
+        <section class="slide flex-col justify-center items-center bg-slate-900 text-white p-8">
+            <div class="slide-content fade-in text-center">
+                 <span class="block text-lg font-semibold text-blue-400">Part 6: The Path Forward</span>
+                 <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Partnering for a Resilient Future</h2>
+                <p class="mt-6 text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto">This framework provides the strategic clarity to translate our internal identity into a clear, compelling, and proactive market presence. It is the pathway to amplify our impact and shape the critical environmental decisions of the future.</p>
+                 <div class="mt-10">
+                    <span class="logo-text text-3xl font-bold">ESSA Technologies</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Slide 21: Q&A -->
+        <section class="slide flex-col justify-center items-center bg-white p-8">
+            <div class="slide-content fade-in text-center">
+                <h2 class="text-6xl md:text-8xl font-extrabold tracking-tight text-slate-900">Q&A</h2>
+                <p class="mt-6 text-2xl text-slate-600">Discussion & Next Steps</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Controls -->
+    <div id="controls" class="fixed bottom-0 left-0 right-0 p-4 bg-black/10 backdrop-blur-sm z-50">
+        <div class="max-w-md mx-auto flex justify-between items-center">
+            <button id="prev-btn" class="bg-white/80 text-slate-800 rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-transform text-2xl" aria-label="Previous Slide">
+                &#x2190;
+            </button>
+            <div id="slide-counter" class="text-white font-semibold text-lg"></div>
+            <button id="next-btn" class="bg-white/80 text-slate-800 rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-transform text-2xl" aria-label="Next Slide">
+                &#x2192;
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const slideCounter = document.getElementById('slide-counter');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    if (i === index) {
+                        slide.classList.add('active');
+                    }
+                });
+                updateControls();
+            }
+            
+            function updateControls() {
+                slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === slides.length - 1;
+                prevBtn.classList.toggle('opacity-50', currentSlide === 0);
+                nextBtn.classList.toggle('opacity-50', currentSlide === slides.length - 1);
+            }
+
+            function next() {
+                if (currentSlide < slides.length - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            }
+            
+            function prev() {
+                 if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            }
+
+            nextBtn.addEventListener('click', next);
+            prevBtn.addEventListener('click', prev);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    e.preventDefault();
+                    next();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    prev();
+                }
+            });
+
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
